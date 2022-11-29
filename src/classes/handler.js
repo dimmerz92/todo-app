@@ -4,8 +4,8 @@ const handler = () => {
     const projects = [];
 
     const getProject = (index) => {
-        return projects[index];
-    }
+        return projects[index].getProject();
+    };
 
     const getProjects = () => {
         const projectsArray = [];
