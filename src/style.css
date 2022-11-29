@@ -1,0 +1,43 @@
+body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: pink;
+}
+
+nav {
+    background-color: blue;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style-type: none;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+#projectNav {
+    background-color: red;
+}
+
+#projectNav > div {
+    display: flex;
+    justify-content: space-around;
+}
+
+#mainContent {
+    background-color: green;
+}
+
+footer {
+    background-color: aqua;
+}
