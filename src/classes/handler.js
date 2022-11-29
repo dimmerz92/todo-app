@@ -3,6 +3,10 @@ import project from "./project";
 const handler = () => {
     const projects = [];
 
+    const getProject = (index) => {
+        return projects[index];
+    }
+
     const getProjects = () => {
         const projectsArray = [];
         projects.forEach(project => {
@@ -19,7 +23,7 @@ const handler = () => {
         projects.splice(index, 1);
     };
 
-    return {getProjects, newProject, deleteProject};
+    return {getProject, getProjects, newProject, deleteProject};
 };
 
 export default handler;
