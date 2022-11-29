@@ -5,7 +5,7 @@ const handler = () => {
 
     const getProject = (index) => {
         if (index === -1) {
-            return projects[projects.length - 1];
+            return projects[projects.length - 1].getProject();
         } else {
             return projects[index].getProject();
         };
