@@ -4,7 +4,11 @@ const handler = () => {
     const projects = [];
 
     const getProject = (index) => {
-        return projects[index].getProject();
+        if (index === -1) {
+            return projects[projects.length - 1];
+        } else {
+            return projects[index].getProject();
+        };
     };
 
     const getProjects = () => {
