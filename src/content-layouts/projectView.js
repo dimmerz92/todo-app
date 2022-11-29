@@ -7,7 +7,7 @@ const projectView = (project) => {
     content.appendChild(h1);
 
     const desc = document.createElement('p');
-    desc = project.desc;
+    desc.textContent = project.desc;
     content.appendChild(desc);
 
     // get item cards
