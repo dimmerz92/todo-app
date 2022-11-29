@@ -1,4 +1,5 @@
 import render from "../classes/render";
+import projectView from "./projectView";
 
 const newProject = (handler) => {
     const content = document.createElement('div');
@@ -45,6 +46,7 @@ const newProject = (handler) => {
             titles.appendChild(li);
         });
         render(titles, 'projects');
+        render(projectView(handler.getProject(-1)), 'mainContent');
     });
     content.appendChild(submit);
 
