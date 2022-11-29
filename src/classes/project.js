@@ -4,7 +4,7 @@ const project = (title, desc) => {
     const items = [];
 
     const getProject = () => {
-        return {title, desc};
+        return {title, desc, items};
     };
 
     const newItem = (itemTitle, itemDesc, date, priority) => {
