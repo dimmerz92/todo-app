@@ -20,7 +20,6 @@ const listener = (handler) => {
     // project button
     document.getElementById('newProject').addEventListener('click', () => {
         render(newProject(handler), 'mainContent');
-        render(projectView(handler.getProject(-1)), 'mainContent');
     });
 };
 
