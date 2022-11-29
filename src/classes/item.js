@@ -13,3 +13,5 @@ const item = (title, desc, date, priority) => {
 
     return {getItem, changeDate, changePriority};
 };
+
+export default item;
