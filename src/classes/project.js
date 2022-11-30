@@ -7,6 +7,10 @@ const project = (title, desc) => {
         return {title, desc, items};
     };
 
+    const getItem = (index) => {
+        return items[index].getItem();
+    }
+
     const newItem = (itemTitle, itemDesc, date, priority) => {
         items.push(item(itemTitle, itemDesc, date, priority));
     };
@@ -15,7 +19,7 @@ const project = (title, desc) => {
         items.splice(index, 1);
     };
 
-    return {getProject, newItem, deleteItem}
+    return {getProject, getItem, newItem, deleteItem}
 };
 
 export default project;
