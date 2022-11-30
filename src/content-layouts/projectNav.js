@@ -5,7 +5,7 @@ import projectView from "./projectView";
 const projectNav = (handler) => {
     const titles = document.createElement('ul');
     const dels = document.createElement('ul');
-    handler.getProjects.forEach((project, index) => {
+    handler.getProjects().forEach((project, index) => {
         // project links
         const liTitle = document.createElement('li');
         const aTitle = document.createElement('a');
