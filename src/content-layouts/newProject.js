@@ -1,4 +1,5 @@
 import render from "../classes/render";
+import projectNav from "./projectNav";
 import projectView from "./projectView";
 
 const newProject = (handler) => {
@@ -39,13 +40,7 @@ const newProject = (handler) => {
     submit.textContent = 'Submit';
     submit.addEventListener('click', () => {
         handler.newProject(document.getElementById('title').value, document.getElementById('desc').value);
-        const titles = document.createElement('ul');
-        handler.getProjects().forEach(project => {
-            const li = document.createElement('li');
-            li.textContent = project.title;
-            titles.appendChild(li);
-        });
-        render(titles, 'projects');
+        render(projectNav(handler), 'projects');
         render(projectView(handler.getProject(-1)), 'mainContent');
     });
     content.appendChild(submit);
