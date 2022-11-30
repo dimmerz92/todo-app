@@ -3,7 +3,7 @@ const render = (content, target) => {
     view.innerHTML = '';
     if (content.length > 1) {
         for (let i = 0; i < content.length; i++) {
-            view.appendChild(content);
+            view.appendChild(content[i]);
         };
     } else {
         view.appendChild(content);
