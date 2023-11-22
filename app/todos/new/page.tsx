@@ -1,18 +1,24 @@
 "use client";
-import { Button, Callout, TextArea, TextField } from "@radix-ui/themes";
+import { Button, Callout, TextArea, TextField, Text } from "@radix-ui/themes";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import React, { useState } from "react";
 import axios from "axios";
+import { createTodoSchema } from "@/app/validationSchemas";
 
-interface TodoForm {
-  title: string;
-  description: string;
-}
+type TodoForm = z.infer<typeof createTodoSchema>;
 
 const NewTodoPage = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<TodoForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TodoForm>({
+    resolver: zodResolver(createTodoSchema),
+  });
   const [error, setError] = useState("");
 
   return (
@@ -39,10 +45,20 @@ const NewTodoPage = () => {
             {...register("title")}
           />
         </TextField.Root>
+        {errors.title && (
+          <Text color="red" as="p">
+            {errors.title.message}
+          </Text>
+        )}
         <TextArea
           placeholder="Add any details about your task..."
           {...register("description")}
         />
+        {errors.description && (
+          <Text color="red" as="p">
+            {errors.description.message}
+          </Text>
+        )}
         <Button>Submit</Button>
       </form>
     </div>
