@@ -8,11 +8,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { createTodoSchema } from "@/app/validationSchemas";
 import { ErrorMessage } from "@/app/components/ErrorMessage";
+import Loading from "@/app/components/Loading";
 
 type TodoForm = z.infer<typeof createTodoSchema>;
 
 const NewTodoPage = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,7 +23,6 @@ const NewTodoPage = () => {
   } = useForm<TodoForm>({
     resolver: zodResolver(createTodoSchema),
   });
-  const [error, setError] = useState("");
 
   return (
     <div className="max-w-xl">
@@ -33,9 +35,11 @@ const NewTodoPage = () => {
         className="space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
+            setLoading(true);
             await axios.post("/api/todos", data);
             router.push("/todos");
           } catch (error) {
+            setLoading(false);
             setError("An unexpected error occurred");
           }
         })}
@@ -52,7 +56,7 @@ const NewTodoPage = () => {
           {...register("description")}
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        <Button>Submit</Button>
+        <Button disabled={isLoading}>Submit {isLoading && <Loading />}</Button>
       </form>
     </div>
   );
