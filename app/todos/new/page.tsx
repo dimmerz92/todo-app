@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import React, { useState } from "react";
 import axios from "axios";
 import { createTodoSchema } from "@/app/validationSchemas";
+import { ErrorMessage } from "@/app/components/ErrorMessage";
 
 type TodoForm = z.infer<typeof createTodoSchema>;
 
@@ -45,20 +46,12 @@ const NewTodoPage = () => {
             {...register("title")}
           />
         </TextField.Root>
-        {errors.title && (
-          <Text color="red" as="p">
-            {errors.title.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <TextArea
           placeholder="Add any details about your task..."
           {...register("description")}
         />
-        {errors.description && (
-          <Text color="red" as="p">
-            {errors.description.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button>Submit</Button>
       </form>
     </div>
