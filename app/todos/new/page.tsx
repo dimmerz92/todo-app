@@ -23,6 +23,16 @@ const NewTodoPage = () => {
   } = useForm<TodoForm>({
     resolver: zodResolver(createTodoSchema),
   });
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setLoading(true);
+      await axios.post("/api/todos", data);
+      router.push("/todos");
+    } catch (error) {
+      setLoading(false);
+      setError("An unexpected error occurred");
+    }
+  });
 
   return (
     <div className="max-w-xl">
@@ -31,19 +41,7 @@ const NewTodoPage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        className="space-y-3"
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setLoading(true);
-            await axios.post("/api/todos", data);
-            router.push("/todos");
-          } catch (error) {
-            setLoading(false);
-            setError("An unexpected error occurred");
-          }
-        })}
-      >
+      <form className="space-y-3" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input
             placeholder="Add new tasks..."
