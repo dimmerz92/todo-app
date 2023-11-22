@@ -18,3 +18,8 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(newTodo, { status: 201 });
 }
+
+export async function GET(request: NextRequest) {
+  const todoList = await prisma.todo.findMany();
+  return NextResponse.json(todoList, { status: 200 });
+}
